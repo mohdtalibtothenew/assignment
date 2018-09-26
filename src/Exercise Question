@@ -1,0 +1,341 @@
+Q1. Write a program to replace a substring inside a string with other string ?
+Q2. Write a program to find the number of occurrences of the duplicate words in a string and print      	them ?
+Q3. Write a program to find the number of occurrences of a character in a string without using 	loop?
+Q4. Calculate the number & Percentage Of Lowercase Letters,Uppercase Letters, Digits And Other        	Special Characters In A String
+Q5. Find common elements between two arrays.
+Q6. There is an array with every element repeated twice except one. Find that element
+Q7. Write a program to print your Firstname,LastName & age using static block,static method & static variable respectively
+Q8. Write a program to reverse a string and remove character from index 4 to index 9 from the reversed string using String Buffer
+Q9.Write a program to display values of enums using a constructor & getPrice() method (Example display house & their prices)
+Q10.Write a single program for following operation using overloading
+  A) Adding 2 integer number
+  B) Adding 2 double
+  C) multiplying 2 float
+  D) multiplying 2 int
+  E) concate 2 string
+  F) Concate 3 String
+Q11.Create 3 sub class of bank SBI,BOI,ICICI all 4 should have method called getDetails which provide there specific details like rateofinterest etc,print details of every banks
+ 
+
+
+Ans. 1.
+
+import java.util.Scanner;
+public class Q1 {
+    public static void main(String... args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter String");
+        String str1 = sc.nextLine();
+        System.out.println("Enter string which will be replaced");
+        String strx = sc.nextLine();
+        System.out.println("Enter string which will take space in string");
+        String str2 = sc.nextLine();
+        System.out.println("String after replacement");
+        System.out.println(str1.replace(strx, str2));
+    }
+}
+Ans. 2.
+import java.util.*;
+public class PrintDuplicate {
+    public static void main(String...args){
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter String");
+    String str1 = sc.nextLine();
+    String[] element =str1.split(" ");
+    Map<String,Integer> map = new HashMap<>();
+    for(int i=0;i<element.length;i++){
+        int count=1;
+        for (int j=i+1;j<element.length;j++){
+            if(element[i].equals(element[j])){
+                count++;
+                 map.put(element[i],count);
+            }
+        }
+    }
+        System.out.println(map);
+       }
+    }
+
+
+Ans. 3.
+
+import java.util.Scanner;
+public class OccurrenceCount {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter String");
+        String str1 = sc.nextLine();
+        System.out.println("Enter Character ");
+        String ch =sc.next();
+        int charcount = str1.length() - str1.replaceAll(ch, "").length();
+        System.out.println("Occurrence Of "+ ch+" Char In String: " + charcount);
+    }
+}
+Ans. 4.
+
+import java.util.Scanner;
+public class CharacterCal {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter String");
+        String str1 = sc.nextLine();
+        int str1Length = str1.length();
+        String str2=str1.replaceAll(" ","");
+        int lowerCaseLettersCount =  str2.replaceAll("[^a-z]", "").length();
+        int upperCaseLettersCount = str2.replaceAll("[^A-Z]", "").length();
+        int digitCount =  str2.replaceAll("[^0-9]", "").length();
+        int specialCharCount = str2.replaceAll("[A-Za-z0-9]", "").length();
+        double upperCasePercentage = upperCaseLettersCount*100/str1Length;
+        double lowerCasePercentage = lowerCaseLettersCount*100/str1Length;
+        double digitPercentage = digitCount*100/str1Length;
+        double specialCharPercentage = specialCharCount*100/str1Length;
+        System.out.println("Upper case Letters count "+upperCaseLettersCount+ " and Percentage "+upperCasePercentage);
+        System.out.println("Lower case Letters count "+lowerCaseLettersCount+ " and Percentage "+lowerCasePercentage);
+        System.out.println("Digits count "+digitCount+ " and Percentage "+digitPercentage);
+        System.out.println("Special character count "+specialCharCount+ " and Percentage "+specialCharPercentage);
+    }
+}
+
+Ans. 5.
+
+public class CommonElement {
+    public static void main(String[] args) {
+        int[] array1 = {1,2,6,2,3};
+        int[] array2 ={0,9,8,7,3,4};
+        for(int i =0;i<array1.length;i++){
+            for(int j=0;j<array2.length;j++){
+                if(array1[i]==array2[j]){
+                    System.out.println(array1[i]);
+                }
+            }
+        }
+    }
+}
+
+Ans. 6.
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+public class SingleElement {
+    public static void main(String[] args) {
+        int[] element ={1,1,2,5,5};
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<element.length;i++){
+            if(!map.containsKey(element[i])){
+                map.put(element[i],0);
+            }
+            if(map.containsKey(element[i])){
+                map.put(element[i],map.get(element[i])+1);
+            }
+        }
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if(entry.getValue()<2){
+                System.out.println("Element = " + entry.getKey() );
+            }
+        }
+    }
+}
+
+Ans. 7.
+
+public class StaticTest {
+    static  String firstName = "Mohd";
+    static String lastName ="Talib";
+    static{
+        System.out.println("Inside static block");
+        System.out.println("First Name :"+firstName+" Last Name :"+lastName);
+    }
+    static void info(){
+        System.out.println("Inside static method");
+        System.out.println("First Name :"+firstName+" Last Name :"+lastName);
+    }
+    public static void main(String args[])
+    {
+        info();
+        System.out.println("By static variable");
+        System.out.println("First Name :"+firstName+" Last Name :"+lastName);
+    }
+}
+Output:
+Inside static block
+First Name :Mohd Last Name :Talib
+Inside static method
+First Name :Mohd Last Name :Talib
+By static variable
+First Name :Mohd Last Name :Talib
+
+Ans. 8.
+
+public class ReversString {
+    public String reversString(String s){
+        StringBuffer sb = new StringBuffer(s);
+        String str2 = sb.reverse().toString();
+        return str2;
+    }
+    public String removeChar(String s){
+        StringBuffer sb = new StringBuffer(s);
+        String removedString = sb.delete(4,9).toString();
+        return  removedString;
+    }
+    public static void main(String[] args) {
+        String string = "Hello World yes";
+        ReversString rs = new ReversString();
+        String result = rs.reversString(string);
+        System.out.println("Reversed string :"+result);
+        System.out.println("String after character removed :"+rs.removeChar(result));
+    }
+}
+Outtput:
+Reversed string :sey dlroW olleH
+String after character removed :sey  olleH
+
+Process finished with exit code 0
+
+
+
+
+
+
+Ans. 9
+
+public class EnumQ9
+{
+    enum house{
+        Bunglow(100000), Flat(250000),Villa(500000),Small_home(10000);
+        private int price;
+        house(int price) {
+            this.price = price;
+        }
+        public int getPrice() {
+            return price;
+        }
+    }
+    public static void main(String[] args)
+    {
+        for (house h:house.values())
+        {
+            System.out.println("House "+ h + " and price is Rs." +h.getPrice());
+        }
+    }
+}
+Output:
+House Bunglow and price is Rs.100000
+House Flat and price is Rs.250000
+House Villa and price is Rs.500000
+House Small_home and price is Rs.10000
+
+Process finished with exit code 0
+
+Ans. 10
+
+public class Overloading
+{
+    public static void main(String[] args)
+    {
+        Overloading s=new Overloading();
+        System.out.println("Sum of int values = " + s.sum(10,20));
+        System.out.println("Sum of double values = " + s.sum(10.5,20.5));
+        System.out.println();
+        System.out.println("product of int values = " + s.Multiply(10,20));
+        System.out.println("product of double values = " + s.Multiply(10.5f,20.5f));
+        System.out.println();
+        System.out.println("Concatenation of two String values = " + s.String_over("Hello ","World"));
+        System.out.println("Concatenation of three String values = " + s.String_over("To","The","New"));
+    }
+    public int sum(int x,int y)
+    {
+        return x+y;
+    }
+    public double sum(double x,double y)
+    {
+        return x+y;
+    }
+    public int Multiply(int x,int y)
+    {
+        return x*y;
+    }
+    public float Multiply(float x,float y)
+    {
+        return x*y;
+    }
+    public String String_over(String x,String y)
+    {
+        return x+y;
+    }
+    public String String_over(String x,String y,String z)
+    {
+        return x+y+z;
+    }
+}
+
+Output :
+
+Sum of int values = 30
+Sum of double values = 31.0
+
+product of int values = 200
+product of double values = 215.25
+
+Concatenation of two String values = Hello World
+Concatenation of three String values = ToTheNew
+
+Process finished with exit code 0
+
+
+Ans. 11.
+abstract public class Bank
+{
+    String name;
+    int rate;
+    public Bank(String name, int rate) {
+        this.name = name;
+        this.rate = rate;
+    }
+    public static void main(String[] args)
+    {
+        Bank Sb=new SBI();
+        Sb.getDetails();
+        Bank bo=new BOI();
+        bo.getDetails();
+        Bank ic=new ICICI();
+        ic.getDetails();
+    }
+    public void getDetails()
+    {
+        System.out.println("Name of Bank =" + this.name);
+        System.out.println("Rate of Bank =" + this.rate+"%");
+    }
+}
+class SBI extends Bank
+{
+    SBI() {
+        super("SBI", 6);
+    }
+}
+class BOI extends Bank
+{
+    BOI() {
+        super("BOI", 8);
+    }
+}
+class ICICI extends Bank
+{
+    ICICI() {
+        super("ICICI", 10);
+    }
+}
+
+Output:
+Name of Bank =SBI
+Rate of Bank =6%
+Name of Bank =BOI
+Rate of Bank =8%
+Name of Bank =ICICI
+Rate of Bank =10%
+
+Process finished with exit code 0
+
+
+
