@@ -1,3 +1,5 @@
+//Question 6
+
 public class MultiCatchAndFinally {
     public static void main(String args[]) {
         try {
